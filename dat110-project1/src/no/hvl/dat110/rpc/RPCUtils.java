@@ -15,11 +15,16 @@ public class RPCUtils {
 
 		byte[] encoded;
 
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		// COMPLETED: marshall RPC identifier and string into byte array
+		
+		//=================================================================
+		
+		byte[] temp = str.getBytes();
+		encoded = new byte[temp.length + 1];
+		encoded[0] = rpcid;
+		System.arraycopy(temp, 0, encoded, 1, temp.length);
+		
+		//=================================================================
 
 		return encoded;
 	}
@@ -28,11 +33,14 @@ public class RPCUtils {
 
 		String decoded;
 
-		// TODO: unmarshall String contained in data into decoded
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		// COMPLETED: unmarshall String contained in data into decoded
+		
+		//=================================================================
+		
+		data = Arrays.copyOfRange(data, 1, data.length);
+		decoded = new String(data);
+		
+		//=================================================================		
 
 		return decoded;
 	}
@@ -41,11 +49,14 @@ public class RPCUtils {
 
 		byte[] encoded;
 
-		// TODO: marshall RPC identifier in case of void type
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		// COMPLETED: marshall RPC identifier in case of void type
+		
+		//=================================================================
+		
+		encoded = new byte[1];
+		encoded[0] = rpcid;
+		
+		//=================================================================
 
 		return encoded;
 
@@ -53,7 +64,7 @@ public class RPCUtils {
 
 	public static void unmarshallVoid(byte[] data) {
 
-		// TODO: unmarshall void type
+		// COMPLETED: unmarshall void type
 	}
 
 	public static byte[] marshallBoolean(byte rpcid, boolean b) {
@@ -81,24 +92,58 @@ public class RPCUtils {
 
 		byte[] encoded;
 
-		// TODO: marshall RPC identifier and string into byte array
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		// COMPLETED: marshall RPC identifier and string into byte array
+		
+		//=================================================================
+		
+		encoded = new byte[5]; // rpcid + 4 byte integer
+		encoded[0] = rpcid;
+		byte[] data = integerToByteArray(x);
+		System.arraycopy(data, 0, encoded, 1, data.length);
+		
+		//=================================================================
 
 		return encoded;
 	}
+	
+	private static final void printArray(byte[] bytes) {
+		for (byte b : bytes) {
+			System.out.println(b);
+		}
+	}
+	
+	//=================================================================
+	
+	private static final byte[] integerToByteArray(int val) {
+		return new byte[] {
+				(byte)(val >>> 24),
+				(byte)(val >>> 16),
+				(byte)(val >>> 8),
+				(byte)val
+		};
+	}
+	
+	private static final int byteArrayToInteger(byte[] data) {
+		return ((data[0] & 0xFF) << 24) | 
+	           ((data[1] & 0xFF) << 16) | 
+	           ((data[2] & 0xFF) << 8 ) | 
+	           ((data[3] & 0xFF) << 0 );
+	}
+	
+	//=================================================================
 
 	public static int unmarshallInteger(byte[] data) {
 
 		int decoded;
 
-		// TODO: unmarshall integer contained in data
-
-		if (true) {
-			throw new UnsupportedOperationException(TODO.method());
-		}
+		// COMPLETED: unmarshall integer contained in data
+		
+		//=================================================================
+		
+		byte[] temp = Arrays.copyOfRange(data, 1, 5); //rpcid + 4 byte integer = 5
+		decoded = byteArrayToInteger(temp);
+		
+		//=================================================================
 
 		return decoded;
 
