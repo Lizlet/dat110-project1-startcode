@@ -1,6 +1,5 @@
 package no.hvl.dat110.system.display;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.RPCImpl;
 import no.hvl.dat110.rpc.RPCUtils;
 

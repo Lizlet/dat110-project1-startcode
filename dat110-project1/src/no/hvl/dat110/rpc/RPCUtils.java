@@ -2,8 +2,6 @@ package no.hvl.dat110.rpc;
 
 import java.util.Arrays;
 
-import no.hvl.dat110.TODO;
-
 public class RPCUtils {
 
 	// Utility methods for marshalling and marshalling of parameters and return values
@@ -104,12 +102,6 @@ public class RPCUtils {
 		//=================================================================
 
 		return encoded;
-	}
-	
-	private static final void printArray(byte[] bytes) {
-		for (byte b : bytes) {
-			System.out.println(b);
-		}
 	}
 	
 	//=================================================================
