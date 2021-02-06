@@ -1,6 +1,5 @@
 package no.hvl.dat110.system.controller;
 
-import no.hvl.dat110.TODO;
 import no.hvl.dat110.rpc.RPCClient;
 import no.hvl.dat110.rpc.RPCServerStopStub;
 
@@ -51,7 +50,7 @@ public class Controller  {
 		//=================================================================
 		
 		for (int i=0; i<N; i++) {
-			display.write(String.format("DISPLAY: %d\n", sensor.read()));
+			display.write(Integer.toString(sensor.read()));
 		}
 		
 		//=================================================================
